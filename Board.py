@@ -1,7 +1,7 @@
 # This file is for defining Board class
 # Date: 2022.06.11
 
-from Ball import Ball, Color
+from Ball import Ball
 
 class Board:
     def __init__(self, height, width):
