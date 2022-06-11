@@ -2,25 +2,26 @@
 # Date: 2022.06.11
 
 from Ball import Ball, Color
-import random
 
 class Board:
     def __init__(self, height, width):
         self.height = height
         self.width = width
-        self.balls = []
-        self.initialize_balls()
+        self.balls = self.initialize_balls()
 
     def initialize_balls(self):
         # fill board with balls
-        for i in range (self.height):
+        balls = []
+        for i in range(self.height):
             row = []
             for j in range(self.width):
-                row.append(Ball(Color(random.randint(1, 5))))
+                row.append(Ball())
 
-            self.balls.append(row)
+            balls.append(row)
+        return balls
 
     def __repr__(self):
+        b = ""
         for row in self.balls:
-            print(row)
-        return ""
+            b += str(row) + "\n"
+        return b
