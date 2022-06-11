@@ -9,4 +9,3 @@ class Color(Enum):
     GREEN = 3
     YELLOW = 4
     PURPLE = 5
-    
