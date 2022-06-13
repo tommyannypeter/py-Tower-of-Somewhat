@@ -1,0 +1,16 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
+        args:
+        -   -sn
+        -   --extension-pkg-whitelist=pygame
+        -   --module-naming-style=PascalCase
+        -   --max-line-length=100
+        -   --disable=missing-module-docstring
+        -   --disable=missing-class-docstring
+        -   --disable=missing-function-docstring
