@@ -11,4 +11,4 @@ class Color(Enum):
     PURPLE = (255, 0, 255)
 
     def get_random_color():
-        return random.choice([Color.RED, Color.GREEN, Color.BLACK, Color.YELLOW, Color.PURPLE])
+        return random.choice([Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.PURPLE])
