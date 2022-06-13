@@ -1,3 +1,5 @@
+.PHONY: clean all install test
+
 all:
 	python main.py
 
@@ -6,3 +8,7 @@ install:
 
 test:
 	python test.py
+
+clean:
+	rm -f *.log
+	rm -rf __pycache__
