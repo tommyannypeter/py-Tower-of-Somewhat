@@ -9,6 +9,12 @@ class Board:
         self.width = width
         self.balls = self.initialize_balls()
 
+    def __repr__(self):
+        b = ""
+        for row in self.balls:
+            b += str(row) + "\n"
+        return b
+
     def initialize_balls(self):
         # fill board with balls
         balls = []
@@ -19,9 +25,3 @@ class Board:
 
             balls.append(row)
         return balls
-
-    def __repr__(self):
-        b = ""
-        for row in self.balls:
-            b += str(row) + "\n"
-        return b
