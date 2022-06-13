@@ -9,8 +9,7 @@ class Ball:
         self.color = self.setColor()
 
     def setColor(self):
-        color = Color
-        return color.get_random_color()
+        return random.choice([Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.PURPLE])
 
     def __repr__(self):
         return str(self.color.name)
