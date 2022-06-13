@@ -3,3 +3,5 @@ all:
 
 install:
 	pip install -r mod_requirement.txt
+test:
+	python test.py
