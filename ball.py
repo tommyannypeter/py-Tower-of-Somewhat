@@ -1,8 +1,8 @@
 # This file is for defining Ball class
 # Date: 2022.06.11
 
-from Color import Color
 import random
+from color import Color
 
 class Ball:
     def __init__(self):

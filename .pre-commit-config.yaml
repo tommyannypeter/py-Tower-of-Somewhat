@@ -9,8 +9,8 @@ repos:
         args:
         -   -sn
         -   --extension-pkg-whitelist=pygame
-        -   --module-naming-style=PascalCase
         -   --max-line-length=100
         -   --disable=missing-module-docstring
         -   --disable=missing-class-docstring
         -   --disable=missing-function-docstring
+        -   --disable=too-few-public-methods

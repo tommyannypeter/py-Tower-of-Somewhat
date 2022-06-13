@@ -1,7 +1,7 @@
 # This file is for defining Board class
 # Date: 2022.06.11
 
-from Ball import Ball
+from ball import Ball
 
 class Board:
     def __init__(self, height, width):
@@ -10,17 +10,17 @@ class Board:
         self.balls = self.initialize_balls()
 
     def __repr__(self):
-        b = ""
+        ball_name = ""
         for row in self.balls:
-            b += str(row) + "\n"
-        return b
+            ball_name += str(row) + "\n"
+        return ball_name
 
     def initialize_balls(self):
         # fill board with balls
         balls = []
-        for i in range(self.height):
+        for _ in range(self.height):
             row = []
-            for j in range(self.width):
+            for _ in range(self.width):
                 row.append(Ball())
 
             balls.append(row)
