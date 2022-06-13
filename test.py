@@ -1,4 +1,4 @@
-# This file is for simple testing
+# This file is for simple testing the Board and Ball class
 # Date: 2022.06.11
 
 from Board import Board
