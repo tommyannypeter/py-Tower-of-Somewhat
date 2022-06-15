@@ -1,7 +1,7 @@
 # This file is for simple testing the Board and Ball class
 # Date: 2022.06.11
 
-from Board import Board
+from board import Board
 
 if __name__ == "__main__":
     board = Board(5, 6)
