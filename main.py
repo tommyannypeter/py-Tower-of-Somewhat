@@ -1,37 +1,68 @@
 import sys
+from enum import Enum, auto
 import pygame
 from pygame.locals import QUIT
 
 from logger import LOGGER
 from color import Color
 
-if __name__ == "__main__":
-    LOGGER.info("Initialize...")
-    pygame.init()
+class State(Enum):
+    OPENING = auto()
+    STAGE = auto()
+    EXIT = auto()
 
-    WIDTH, HEIGHT = 800, 600
-    window = pygame.display.set_mode((WIDTH, HEIGHT))
-    LOGGER.debug(f"Set width and height: {(WIDTH, HEIGHT)}")
+class Action(Enum):
+    START_GAME = auto()
+    GAME_OVER = auto()
+    LEAVE = auto()
 
-    TITLE = "Tower-of-Somewhat"
-    pygame.display.set_caption(TITLE)
-    LOGGER.debug(f"Set window title: {TITLE}")
+def opening():
+    title = "Tower-of-Somewhat"
+    pygame.display.set_caption(title)
+    LOGGER.debug(f"Set window title: {title}")
 
     background_color = Color.BLACK
     window.fill(background_color.value)
     LOGGER.debug(f"Set background color: {background_color}")
 
     title_font = pygame.font.SysFont(None, 60)
-    title_text = title_font.render(TITLE, True, Color.WHITE.value)
-    title_text_frame = title_text.get_rect(center=(WIDTH / 2, 50))
+    title_text = title_font.render(title, True, Color.WHITE.value)
+    title_text_frame = title_text.get_rect(center=(width / 2, 50))
     window.blit(title_text, title_text_frame)
-    LOGGER.debug(f"Print title: {TITLE}")
+    LOGGER.debug(f"Print title: {title}")
 
     pygame.display.update()
 
-    print("Press X on the top-right of the screen to exit.")
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
+                return Action.LEAVE
+
+def stage():
+    return Action.LEAVE
+
+if __name__ == "__main__":
+    LOGGER.info("Initialize...")
+    pygame.init()
+
+    width, height = 800, 600
+    window = pygame.display.set_mode((width, height))
+    LOGGER.debug(f"Set width and height: {(width, height)}")
+
+    current_state = State.OPENING
+
+    while current_state != State.EXIT:
+        if current_state == State.OPENING:
+            LOGGER.info("Enter Opening")
+            action = opening()
+            if action == Action.LEAVE:
+                current_state = State.EXIT
+        elif current_state == State.STAGE:
+            LOGGER.info("Enter Stage")
+            action = stage()
+            if action == Action.LEAVE:
+                current_state = State.EXIT
+
+    LOGGER.info("Quit Game")
+    pygame.quit()
+    sys.exit()
