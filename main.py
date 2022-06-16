@@ -3,6 +3,7 @@ from enum import Enum, auto
 import pygame
 from pygame.locals import QUIT
 
+from config import CONFIG
 from logger import LOGGER
 from color import Color
 
@@ -27,7 +28,7 @@ def opening():
 
     title_font = pygame.font.SysFont(None, 60)
     title_text = title_font.render(title, True, Color.WHITE.value)
-    title_text_frame = title_text.get_rect(center=(width / 2, 50))
+    title_text_frame = title_text.get_rect(center=(CONFIG.width / 2, CONFIG.height / 10))
     window.blit(title_text, title_text_frame)
     LOGGER.debug(f"Print title: {title}")
 
@@ -45,9 +46,8 @@ if __name__ == "__main__":
     LOGGER.info("Initialize...")
     pygame.init()
 
-    width, height = 800, 600
-    window = pygame.display.set_mode((width, height))
-    LOGGER.debug(f"Set width and height: {(width, height)}")
+    window = pygame.display.set_mode((CONFIG.width, CONFIG.height))
+    LOGGER.debug(f"Set width and height: {(CONFIG.width, CONFIG.height)}")
 
     current_state = State.OPENING
 
