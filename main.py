@@ -21,12 +21,12 @@ if __name__ == "__main__":
         if current_state == State.OPENING:
             LOGGER.info("Enter Opening")
             action = opening(window)
-            if action == Action.LEAVE:
+            if action == Action.QUIT:
                 current_state = State.EXIT
         elif current_state == State.STAGE:
             LOGGER.info("Enter Stage")
             action = stage()
-            if action == Action.LEAVE:
+            if action == Action.QUIT:
                 current_state = State.EXIT
 
     LOGGER.info("Quit Game")

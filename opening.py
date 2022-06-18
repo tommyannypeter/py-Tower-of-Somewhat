@@ -1,5 +1,4 @@
 import pygame
-from pygame.locals import QUIT
 
 from config import CONFIG
 from logger import LOGGER
@@ -25,5 +24,5 @@ def opening(window):
 
     while True:
         for event in pygame.event.get():
-            if event.type == QUIT:
-                return Action.LEAVE
+            if event.type == pygame.QUIT:
+                return Action.QUIT
