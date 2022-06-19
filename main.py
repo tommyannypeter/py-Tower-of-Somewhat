@@ -12,6 +12,9 @@ if __name__ == "__main__":
     LOGGER.info("Initialize...")
     pygame.init()
 
+    pygame.display.set_caption("Tower-of-Somewhat")
+    LOGGER.debug("Set window title")
+
     window = pygame.display.set_mode((CONFIG.width, CONFIG.height))
     LOGGER.debug(f"Set width and height: {(CONFIG.width, CONFIG.height)}")
 
