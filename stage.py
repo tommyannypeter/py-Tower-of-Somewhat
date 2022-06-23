@@ -1,4 +1,4 @@
 from action import Action
 
-def stage():
+def stage() -> Action:
     return Action.QUIT
