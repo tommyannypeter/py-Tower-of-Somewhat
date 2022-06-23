@@ -2,9 +2,9 @@ import configparser
 
 class _Config:
     def __init__(self, config_file) -> None:
-        config = configparser.ConfigParser()
-        config.read(config_file)
-        self.width = config.getint("DISPLAY", "width")
-        self.height = config.getint("DISPLAY", "height")
+        parser = configparser.ConfigParser()
+        parser.read(config_file)
+        self.width = parser.getint("DISPLAY", "width")
+        self.height = parser.getint("DISPLAY", "height")
 
 CONFIG = _Config("configuration.ini")
