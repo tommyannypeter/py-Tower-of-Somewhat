@@ -4,37 +4,7 @@ from config import CONFIG
 from logger import LOGGER
 from action import Action
 from color import Color
-
-class TextPrinter:
-    def __init__(self, text, font_size, position, color) -> None:
-        self.text = text
-        self.font_size = font_size
-        self.position = position
-        self.color = color
-        self.font = pygame.font.SysFont(None, self.font_size)
-        self.text_surface = self.font.render(self.text, True, self.color.value)
-
-    def set_text(self, text) -> None:
-        self.text = text
-        self.text_surface = self.font.render(self.text, True, self.color.value)
-
-    def set_font_size(self, font_size) -> None:
-        self.font_size = font_size
-        self.font = pygame.font.SysFont(None, self.font_size)
-        self.text_surface = self.font.render(self.text, True, self.color.value)
-
-    def set_position(self, position) -> None:
-        self.position = position
-
-    def set_color(self, color) -> None:
-        self.color = color
-        self.text_surface = self.font.render(self.text, True, self.color.value)
-
-    def get_frame(self) -> pygame.Rect:
-        return self.text_surface.get_rect(center=self.position)
-
-    def print(self, window: pygame.Surface) -> None:
-        window.blit(self.text_surface, self.get_frame())
+from textprinter import TextPrinter
 
 def opening(window: pygame.Surface) -> Action:
     background_color = Color.BLACK
