@@ -8,6 +8,20 @@ from action import Action
 from opening import opening
 from stage import stage
 
+def should_continue(state: State) -> bool:
+    return state != State.EXIT
+
+def next_action(state: State) -> Action:
+    if state == State.OPENING:
+        LOGGER.info("Enter Opening")
+        return opening(window)
+    if state == State.STAGE:
+        LOGGER.info("Enter Stage")
+        return stage()
+    LOGGER.error(f"Not implemented state: {state}")
+    LOGGER.error("Quit directly")
+    return Action.QUIT
+
 if __name__ == "__main__":
     LOGGER.info("Initialize...")
     pygame.init()
@@ -20,17 +34,9 @@ if __name__ == "__main__":
 
     current_state = State.OPENING
 
-    while current_state != State.EXIT:
-        if current_state == State.OPENING:
-            LOGGER.info("Enter Opening")
-            action = opening(window)
-            if action == Action.QUIT:
-                current_state = State.EXIT
-        elif current_state == State.STAGE:
-            LOGGER.info("Enter Stage")
-            action = stage()
-            if action == Action.QUIT:
-                current_state = State.EXIT
+    while should_continue(current_state):
+        if next_action(current_state) == Action.QUIT:
+            current_state = State.EXIT
 
     LOGGER.info("Quit Game")
     pygame.quit()
