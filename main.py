@@ -13,10 +13,8 @@ def should_continue(state: State) -> bool:
 
 def next_action(state: State) -> Action:
     if state == State.OPENING:
-        LOGGER.info("Enter Opening")
         return opening(window)
     if state == State.STAGE:
-        LOGGER.info("Enter Stage")
         return stage()
     LOGGER.error(f"Not implemented state: {state}")
     LOGGER.error("Quit directly")

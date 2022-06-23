@@ -7,6 +7,8 @@ from color import Color
 from textprinter import TextPrinter
 
 def opening(window: pygame.Surface) -> Action:
+    LOGGER.info("Enter Opening")
+
     background_color = Color.BLACK
     LOGGER.debug(f"Set background color: {background_color}")
 
