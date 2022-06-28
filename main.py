@@ -1,37 +1,41 @@
 import sys
 import pygame
-from pygame.locals import QUIT
 
+from config import CONFIG
 from logger import LOGGER
-from color import Color
+from state import State
+from action import Action
+from opening import opening
+from stage import stage
+
+def should_continue(state: State) -> bool:
+    return state != State.EXIT
+
+def next_action(state: State) -> Action:
+    if state == State.OPENING:
+        return opening(window)
+    if state == State.STAGE:
+        return stage()
+    LOGGER.error(f"Not implemented state: {state}")
+    LOGGER.error("Quit directly")
+    return Action.QUIT
 
 if __name__ == "__main__":
     LOGGER.info("Initialize...")
     pygame.init()
 
-    WIDTH, HEIGHT = 800, 600
-    window = pygame.display.set_mode((WIDTH, HEIGHT))
-    LOGGER.debug(f"Set width and height: {(WIDTH, HEIGHT)}")
+    pygame.display.set_caption("Tower-of-Somewhat")
+    LOGGER.debug("Set window title")
 
-    TITLE = "Tower-of-Somewhat"
-    pygame.display.set_caption(TITLE)
-    LOGGER.debug(f"Set window title: {TITLE}")
+    window = pygame.display.set_mode((CONFIG.width, CONFIG.height))
+    LOGGER.debug(f"Set width and height: {(CONFIG.width, CONFIG.height)}")
 
-    background_color = Color.BLACK
-    window.fill(background_color.value)
-    LOGGER.debug(f"Set background color: {background_color}")
+    current_state = State.OPENING
 
-    title_font = pygame.font.SysFont(None, 60)
-    title_text = title_font.render(TITLE, True, Color.WHITE.value)
-    title_text_frame = title_text.get_rect(center=(WIDTH / 2, 50))
-    window.blit(title_text, title_text_frame)
-    LOGGER.debug(f"Print title: {TITLE}")
+    while should_continue(current_state):
+        if next_action(current_state) == Action.QUIT:
+            current_state = State.EXIT
 
-    pygame.display.update()
-
-    print("Press X on the top-right of the screen to exit.")
-    while True:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
+    LOGGER.info("Quit Game")
+    pygame.quit()
+    sys.exit()
