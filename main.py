@@ -33,8 +33,9 @@ if __name__ == "__main__":
     current_state = State.OPENING
 
     while should_continue(current_state):
-        if next_action(current_state) == Action.QUIT:
-            current_state = State.EXIT
+        match next_action(current_state):
+            case Action.QUIT:
+                current_state = State.EXIT
 
     LOGGER.info("Quit Game")
     pygame.quit()

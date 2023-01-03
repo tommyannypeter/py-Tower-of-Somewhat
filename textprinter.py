@@ -32,3 +32,7 @@ class TextPrinter:
 
     def print(self, window: pygame.Surface) -> None:
         window.blit(self.text_surface, self.get_frame())
+
+    def is_touch_mouse(self) -> bool:
+        mouse_position = pygame.mouse.get_pos()
+        return self.get_frame().collidepoint(mouse_position[0], mouse_position[1])
