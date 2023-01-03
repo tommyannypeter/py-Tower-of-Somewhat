@@ -15,7 +15,7 @@ def next_action(state: State) -> Action:
     if state == State.OPENING:
         return opening(window)
     if state == State.STAGE:
-        return stage()
+        return stage(window)
     LOGGER.error(f"Not implemented state: {state}")
     LOGGER.error("Quit directly")
     return Action.QUIT
