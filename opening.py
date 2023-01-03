@@ -59,5 +59,7 @@ def opening(window: pygame.Surface) -> Action:
                 case pygame.QUIT:
                     return Action.QUIT
                 case pygame.MOUSEBUTTONDOWN:
+                    if menu_start_printer.is_touch_mouse():
+                        return Action.START
                     if menu_quit_printer.is_touch_mouse():
                         return Action.QUIT

@@ -34,6 +34,8 @@ if __name__ == "__main__":
 
     while should_continue(current_state):
         match next_action(current_state):
+            case Action.START:
+                current_state = State.STAGE
             case Action.QUIT:
                 current_state = State.EXIT
 
