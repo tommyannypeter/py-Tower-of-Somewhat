@@ -4,29 +4,25 @@ import pygame
 from config import CONFIG
 from logger import LOGGER
 from action import Action
+from scene import Scene
 from color import Color
 from textprinter import TextPrinter
 
-def stage(window: pygame.Surface) -> Action:
-    LOGGER.info("Enter Stage")
+class Stage(Scene):
+    def __init__(self, name: str, window: pygame.Surface) -> None:
+        super().__init__(name, window)
+        title_printer = TextPrinter(
+            text='Stage 1',
+            font_size=60,
+            position=(CONFIG.width / 2, CONFIG.height / 10),
+            color=Color.WHITE
+        )
+        self._printers.append(title_printer)
 
-    background_color = Color.BLACK
-    LOGGER.debug(f"Set background color: {background_color}")
+    def _detail(self) -> Action:
+        self._print_all()
+        LOGGER.debug("Initialize display")
 
-    title_printer = TextPrinter(
-        text="Stage 1",
-        font_size=60,
-        position=(CONFIG.width / 2, CONFIG.height / 10),
-        color=Color.WHITE
-    )
-
-    def print_all() -> None:
-        window.fill(background_color.value)
-        title_printer.print(window)
-
-    print_all()
-    LOGGER.debug("Initialize display")
-    pygame.display.update()
-
-    time.sleep(5)
-    return Action.QUIT
+        LOGGER.warning("Not Implemented...Sleep for 5 sec")
+        time.sleep(5)
+        return Action.QUIT

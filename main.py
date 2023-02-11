@@ -5,20 +5,23 @@ from config import CONFIG
 from logger import LOGGER
 from state import State
 from action import Action
-from opening import opening
-from stage import stage
+from opening import Opening
+from stage import Stage
 
 def should_continue(state: State) -> bool:
     return state != State.EXIT
 
 def next_action(state: State) -> Action:
-    if state == State.OPENING:
-        return opening(window)
-    if state == State.STAGE:
-        return stage(window)
-    LOGGER.error(f"Not implemented state: {state}")
-    LOGGER.error("Quit directly")
-    return Action.QUIT
+    match state:
+        case State.OPENING:
+            scene = Opening(name='Opening', window=window)
+        case State.STAGE:
+            scene = Stage(name='Stage', window=window)
+        case _:
+            LOGGER.error("Not implemented state: %s", str(state))
+            LOGGER.error("Quit directly")
+            return Action.QUIT
+    return scene.start()
 
 if __name__ == "__main__":
     LOGGER.info("Initialize...")
@@ -28,7 +31,7 @@ if __name__ == "__main__":
     LOGGER.debug("Set window title")
 
     window = pygame.display.set_mode((CONFIG.width, CONFIG.height))
-    LOGGER.debug(f"Set width and height: {(CONFIG.width, CONFIG.height)}")
+    LOGGER.debug("Set width and height: (%d, %d)", CONFIG.width, CONFIG.height)
 
     current_state = State.OPENING
 

@@ -4,34 +4,37 @@ from color import Color
 
 class TextPrinter:
     def __init__(self, text: str, font_size: int, position: tuple, color: Color) -> None:
-        self.text = text
-        self.font_size = font_size
-        self.position = position
-        self.color = color
-        self.font = pygame.font.SysFont(None, self.font_size)
-        self.text_surface = self.font.render(self.text, True, self.color.value)
+        self._text = text
+        self._font_size = font_size
+        self._position = position
+        self._color = color
+        self._font = pygame.font.SysFont(None, self._font_size)
+        self._text_surface = self._font.render(self._text, True, self._color.value)
 
     def set_text(self, text: str) -> None:
-        self.text = text
-        self.text_surface = self.font.render(self.text, True, self.color.value)
+        self._text = text
+        self._text_surface = self._font.render(self._text, True, self._color.value)
+
+    def get_text(self) -> str:
+        return self._text
 
     def set_font_size(self, font_size: int) -> None:
-        self.font_size = font_size
-        self.font = pygame.font.SysFont(None, self.font_size)
-        self.text_surface = self.font.render(self.text, True, self.color.value)
+        self._font_size = font_size
+        self._font = pygame.font.SysFont(None, self._font_size)
+        self._text_surface = self._font.render(self._text, True, self._color.value)
 
     def set_position(self, position: tuple) -> None:
-        self.position = position
+        self._position = position
 
     def set_color(self, color: Color) -> None:
-        self.color = color
-        self.text_surface = self.font.render(self.text, True, self.color.value)
+        self._color = color
+        self._text_surface = self._font.render(self._text, True, self._color.value)
 
     def get_frame(self) -> pygame.Rect:
-        return self.text_surface.get_rect(center=self.position)
+        return self._text_surface.get_rect(center=self._position)
 
     def print(self, window: pygame.Surface) -> None:
-        window.blit(self.text_surface, self.get_frame())
+        window.blit(self._text_surface, self.get_frame())
 
     def is_touch_mouse(self) -> bool:
         mouse_position = pygame.mouse.get_pos()
