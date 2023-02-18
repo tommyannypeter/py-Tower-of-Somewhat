@@ -7,4 +7,4 @@ class _Config:
         self.width = parser.getint("DISPLAY", "width")
         self.height = parser.getint("DISPLAY", "height")
 
-CONFIG = _Config("configuration.ini")
+CONFIG = _Config("docs/configuration.ini")
