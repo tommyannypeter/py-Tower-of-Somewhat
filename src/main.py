@@ -4,8 +4,8 @@ from config import CONFIG
 from logger import LOGGER
 from state import State
 from action import Action
-from opening import Opening
-from stage import Stage
+from scenes.opening_scene import OpeningScene
+from scenes.stage_scene import StageScene
 
 class TowerOfSomewhat():
     def __init__(self) -> None:
@@ -36,10 +36,10 @@ class TowerOfSomewhat():
     def _next_action(self, state: State) -> Action:
         match state:
             case State.OPENING:
-                scene = Opening(name='Opening', window=self._window)
+                scene = OpeningScene(name='Opening', window=self._window)
                 return scene.start()
             case State.STAGE:
-                scene = Stage(name='Stage', window=self._window)
+                scene = StageScene(name='Stage', window=self._window)
                 return scene.start()
             case _:
                 LOGGER.error("Not implemented state: %s", str(state))

@@ -5,11 +5,11 @@ import pygame
 from config import CONFIG
 from logger import LOGGER
 from action import Action
-from scene import Scene
 from color import Color
 from textprinter import TextPrinter
+from scenes.scene import Scene
 
-class Opening(Scene):
+class OpeningScene(Scene):
     def __init__(self, name: str, window: pygame.Surface) -> None:
         super().__init__(name, window)
         title_printer = TextPrinter(
