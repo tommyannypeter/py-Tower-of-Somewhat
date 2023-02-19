@@ -1,13 +1,13 @@
-.PHONY: clean all install test
+.PHONY: run install test clean
 
-all:
-	python main.py
+run:
+	python src/main.py
 
 install:
 	pip install -r mod_requirement.txt
 
 test:
-	python test.py
+	pytest tests
 
 clean:
 	rm -f *.log
